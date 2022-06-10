@@ -97,8 +97,9 @@ class MultiCompressor implements Compressor
                 $connector->putObject(Input::createFromData($payload), "ng-test-bucket", 'packet_dumps/' . $uuid->toString() . '.raw');
 
                 GlobalLogger::get()->alert("Packet dumped into " . $uuid->toString() . ' for exceeding limit: ' . $size);
-            } catch (Throwable) {
-                GlobalLogger::get()->alert("Something went wrong when trying to upload a packet into s3, $size ");
+            } catch (Throwable $error) {
+                GlobalLogger::get()->alert("Something went wrong when trying to upload a packet into s3, $size");
+                GlobalLogger::get()->logException($error);
             }
         }
 
