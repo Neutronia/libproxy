@@ -17,10 +17,9 @@ use libproxy\protocol\ProxyPacketPool;
 use libproxy\protocol\ProxyPacketSerializer;
 use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\network\mcpe\protocol\PacketPool;
-use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\raklib\PthreadsChannelReader;
 use pocketmine\network\mcpe\raklib\PthreadsChannelWriter;
-use pocketmine\network\mcpe\raklib\RakLibInterface;
+use pocketmine\network\mcpe\StandardPacketBroadcaster;
 use pocketmine\network\NetworkInterface;
 use pocketmine\network\PacketHandlingException;
 use pocketmine\plugin\PluginBase;
@@ -254,7 +253,7 @@ final class ProxyNetworkInterface implements NetworkInterface
             $this->server->getNetwork()->getSessionManager(),
             PacketPool::getInstance(),
             new ProxyPacketSender($socketId, $this),
-            RakLibInterface::getBroadcaster($this->server, ProtocolInfo::CURRENT_PROTOCOL),
+            new StandardPacketBroadcaster($this->server),
             MultiCompressor::getInstance(),
             $ip,
             $port
