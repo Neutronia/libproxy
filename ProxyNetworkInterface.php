@@ -44,7 +44,7 @@ use function substr;
 use function trim;
 use const AF_INET;
 use const AF_UNIX;
-use const PTHREADS_INHERIT_NONE;
+use const PTHREADS_INHERIT_CONSTANTS;
 use const SOCK_STREAM;
 
 final class ProxyNetworkInterface implements NetworkInterface
@@ -145,7 +145,7 @@ final class ProxyNetworkInterface implements NetworkInterface
             }
         });
         $this->server->getLogger()->debug('Waiting for Proxy to start...');
-        $this->proxy->startAndWait(PTHREADS_INHERIT_NONE); //HACK: MainLogger needs constants for exception logging
+        $this->proxy->startAndWait(PTHREADS_INHERIT_CONSTANTS); //HACK: MainLogger needs constants for exception logging
         $this->server->getLogger()->debug('Proxy booted successfully');
     }
 
