@@ -36,7 +36,7 @@ class ProxyListener implements Listener
                 break;
             case RequestNetworkSettingsPacket::NETWORK_ID:
                 /** @var RequestNetworkSettingsPacket $packet USED TO SIMULATE VANILLA BEHAVIOUR, SINCE IT'S NOT USED BY US */
-                $origin->setProtocolId($packet->getProtocolVersion());
+//                $origin->setProtocolId($packet->getProtocolVersion());
 
                 $origin->sendDataPacket(NetworkSettingsPacket::create(
                     NetworkSettingsPacket::COMPRESS_EVERYTHING,
